@@ -1,0 +1,91 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+Upload
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+.space{
+	color: darkblue;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+.header{
+	text-align: center;
+	padding:1.5em;
+}
+
+.uploadform{
+    padding: 3em;
+    width:auto;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.uploadinput {
+  width:100%;
+  background: #f2f2f2;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: 'Comfortaa';
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+.filefield{
+    width:100%;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: 'Comfortaa';
+    padding: 0.5em;
+    margin: 0.5em;
+}
+
+form input:focus {
+  background: #A4A4A4;
+}
+
+.uploadbutton {
+  font-family: 'Comfortaa';
+  text-transform: uppercase;
+  background: #4b6cb7;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0.8em;
+  margin: 0.8em;
+}
+
+.errorlist{
+  background-color: lightcoral;
+}
+
+form button:active {
+  background: #395591;
+}
+
+</style>
+
+<div class="space">
+    <div class="container1">
+        <div class="text-center header">
+            <h1>Upload File</h1>
+        </div>
+        <div class="uploadform">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form}}
+                <button type="submit" class="uploadbutton">Upload</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

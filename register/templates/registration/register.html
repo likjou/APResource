@@ -1,0 +1,96 @@
+{% extends "main/base.html" %}
+
+{% block title %}Create an Account{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<style>
+
+body{
+    background-color:#534292;
+    background-image:linear-gradient(0deg,#654a86,#534292) no-repeat;
+  }
+
+.container{
+	color: darkblue;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.header{
+	text-align: center;
+	padding:1.5em;
+}
+
+.loginlink:hover{
+	color:#0275d8;
+}
+
+.registerform{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.loginlink{
+	color: darkblue;
+}
+
+
+.regisinput {
+  border:1px solid blue;
+  outline: 1px solid #dddddd;
+  background: #f2f2f2;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: 'Comfortaa';
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+form input:focus {
+  background: #A4A4A4;
+}
+
+.regisbutton {
+  font-family: 'Comfortaa';
+  text-transform: uppercase;
+  background: #4b6cb7;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+form button:active {
+  background: #395591;
+}
+
+.errorlist{
+	background-color: lightcoral;
+}
+
+</style>
+
+<div class="container">
+	<div class="header">
+		<h1>Register Account</h1>
+	</div>
+	<div>
+		<form method="POST" class="form-group registerform" >
+			{% csrf_token %}
+			{{ form }}
+			<div class="regisbuttoncontainer">
+				<button type="submit" class="btn regisbutton">Register</button>
+			</div>
+			<a href="/account/login" class="loginlink">Already have an account? click here</a>
+		</form>
+	</div>
+</div>
+
+{% endblock %}

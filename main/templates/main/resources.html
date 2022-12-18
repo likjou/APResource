@@ -1,0 +1,71 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+All Resources
+{% endblock %}
+
+{% block extrascript %}
+
+
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+
+   .container{
+      align-content: center;
+      max-width: 98%;
+   }
+
+   .title{
+      color: darkblue;
+      margin: 1.5em;
+   }
+
+</style>
+
+<div class="text-center title">
+   <h1>Resources</h1>
+</div>
+
+<div class="container">
+<table id="myTable" class="tablesorter tablesorter-default">
+   <thead>
+      <tr>
+         <th style="width: 6%;" scope="col" class="text-center">Category</th>
+         <th style="width: 59%;" scope="col" class="sorter-false">Name</th>
+         <th style="width: 5%;" scope="col" class="text-center sorter-false">Link</th>
+         <th style="width: 5%;" scope="col" class="text-center" title="Completed Downloads"><i class="fa fa-check" ></i></th>
+         <th style="width: 5%;" scope="col" class="text-center" title="Seeds"><i class="fa fa-arrow-up"></i></th>
+         <th style="width: 5%;" scope="col" class="text-center" title="Leechers"><i class="fa fa-arrow-down"></i></th> 
+         <th style="width: 7%;" scope="col" class="text-center">Date</th>
+         <th style="width: 8%;" scope="col" class="text-center sorter-false">Size</th> 
+      </tr>
+   
+   </thead>
+   <tbody>
+      {% for files in all_files%}
+      <tr>
+      <td class="text-center"><a href="/filter/{{files.category}}">{{files.category}}</a></td>
+      <td><a href="/{{files.id}}">{{files.title}}</a></td>
+      <td class="text-center">
+         <a href="{{files.magnet}}"><i class="fa fa-magnet"></i></a>
+         <a class="mx-1" href="{{files.file_field.url}}"><i class="fa fa-download"></i></a>
+      </td>
+      <td class="text-center">{{files.total_completed}}</td>
+      <td class="text-center" style="color: green;">{{files.total_seeds}}</td>
+      <td class="text-center" style="color: red;">{{files.total_leechers}}</td>
+      <td class="text-center">{{files.date}}</td>
+      <td class="text-center">{{files.file_size}}</td>
+      </tr>
+      {% endfor %}
+         
+   </tbody>
+</table>
+</div>
+
+
+   
+{% endblock %}

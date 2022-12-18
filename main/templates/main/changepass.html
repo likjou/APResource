@@ -1,0 +1,112 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+Change Password
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+.space{
+	color: darkblue;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.header{
+	text-align: center;
+	padding:1.5em;
+}
+
+.changepasscontainer{
+    padding: 3em;
+    width:auto;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.changepassform{
+    width: 28em;
+}
+
+form label{
+	display: None;
+}
+
+.passinput {
+  width:100%;
+  background: #f2f2f2;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: 'Comfortaa';
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+form input:focus {
+  background: #A4A4A4;
+}
+
+.changepassbutton {
+  font-family: 'Comfortaa';
+  text-transform: uppercase;
+  background: #4b6cb7;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0.8em;
+  margin: 0.8em;
+}
+
+.changepassbuttoncontainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form button:active {
+  background: #395591;
+}
+
+.errorlist{
+    background-color: lightcoral;
+}
+
+</style>
+
+
+<div class="space">
+    <div class="container1">
+        <div class="text-center header">
+            <h1>Change Your Password</h1>
+        </div>
+                    
+
+        <div class="changepasscontainer">
+            <form method="POST">
+                {% for key, value in form.errors.items %}
+                        {{ value }}
+                {% endfor %}
+                {% csrf_token %}
+                <div class="changepassform">
+                    <p>Old Password:</p>
+                    <input type="password" name="old_password" autocomplete="new-password" class=" passinput" required id="id_old_password" placeholder="Enter Old Password"/>
+                    <p>New Password:</p>
+                    <input type="password" name="new_password1" autocomplete="new-password" class=" passinput" required id="id_new_password1" placeholder="Enter New Password"/>
+                    <p>Confirm New Password:</p>
+                    <input type="password" name="new_password2" autocomplete="new-password" class=" passinput" required id="id_new_password2" placeholder="Confirm New Password"/>
+                </div>
+                <div class="changepassbuttoncontainer">
+                    <button type="submit" class="changepassbutton" id="reset">Update Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

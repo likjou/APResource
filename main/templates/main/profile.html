@@ -1,0 +1,123 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+<style>
+
+.space{
+	color: darkblue;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+.header{
+	text-align: center;
+	padding:1em;
+}
+
+.updateformcontainer{
+    padding: 1em;
+    width:100%;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+}
+
+.updateinput {
+    display: flex;
+    flex-direction: column;
+    width:28em;
+    border:1px solid blue;
+    background: #f2f2f2;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: 'Comfortaa';
+    padding: 0.5em;
+    margin: 0.5em;
+}
+
+form input:focus {
+  background: #A4A4A4;
+}
+
+.updatebutton {
+    font-family: 'Comfortaa';
+    text-transform: uppercase;
+    background: #4b6cb7;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0.8em;
+    margin: 0.8em;
+}
+
+.updatebuttoncontainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form button:active {
+  background: #395591;
+}
+
+</style>
+
+<div class="space">
+    <div class="container1">
+        <div class="text-center header">
+            <h1>Profile</h1>
+            <p>Edit your Info here.</p>
+        </div>
+
+        {% if user_form.errors %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <div id="form_errors">
+                    {% for key, value in user_form.errors.items %}
+                        <strong>{{ value }}</strong>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+
+        <div class="updateformcontainer">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="updateform">
+                    <p>Username:</p>
+                    {{ user_form.username }}
+                    <p>Email:</p>
+                    {{ user_form.email }}
+                    <p>First Name:</p>
+                    {{ user_form.first_name }}
+                    <p>Last Name:</p>
+                    {{ user_form.last_name }}
+                </div>
+                <div class="updatebuttoncontainer">
+                    <button type="submit" class="updatebutton">Save Changes</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="text-center mb-2">
+            <button class="btn btn-secondary">
+                <a href="{% url 'changepass' %}" style="color:white;">Change Password</a>
+            </button>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-secondary">
+                <a href="/account/two_factor" style="color:white;">2FA settings</a>
+            </button>
+        </div>
+    </div>
+</div>        
+{% endblock %}
