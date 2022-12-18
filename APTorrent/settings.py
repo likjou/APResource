@@ -156,13 +156,13 @@ EMAIL_HOST = 'smtp.gmail.com'
 
 EMAIL_PORT = '587'
 
-EMAIL_HOST_USER = 'wowmyemailsolong@gmail.com'
+EMAIL_HOST_USER = 'your email'
 
-EMAIL_HOST_PASSWORD = 'mwxf qide baut wazf'
+EMAIL_HOST_PASSWORD = 'your app password'
 
 EMAIL_USE_TLS = 'True'
 
-# EMAIL_PASS = wowmyemailsoLong123-
+
 
 #2FA
 LOGIN_URL = 'two_factor:login'
